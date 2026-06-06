@@ -103,10 +103,8 @@ Sky Italia</strong> e il <strong>Comune di Stradella</strong>, e con numerosi ar
       <p>Trasformiamo un brano in racconto visivo. Lavoriamo fianco a fianco con artisti e band — dall'ascolto della musica alla pre-produzione, dallo storyboard al montaggio finale — modellando ogni progetto su misura. Sappiamo passare dal video narrativo alla performance dal vivo in studio senza perdere identità. Ci appassiona dare a una canzone un'immagine che resti impressa, curando ritmo, colore e dettaglio fotogramma dopo fotogramma.</p>
       <div class="svc-tags"><span>Pre-produzione</span><span>Live in studio</span><span>Narrativo</span><span>Color</span></div>
     </div>
-    <!-- Video YouTube (facade: miniatura + click per riprodurre) -->
-    <div class="video-ph yt-facade" data-yt="lX-9uteSevQ" role="button" tabindex="0" aria-label="Riproduci il video — Video Clip Musicali">
-      <img class="yt-thumb" src="https://i.ytimg.com/vi/lX-9uteSevQ/maxresdefault.jpg" alt="Anteprima video — Video Clip Musicali" loading="lazy" onerror="this.onerror=null;this.src='https://i.ytimg.com/vi/lX-9uteSevQ/hqdefault.jpg'">
-      <div class="play"></div>
+    <div class="video-ph">
+      <iframe src="https://www.youtube.com/embed/lX-9uteSevQ" width="100%" height="315" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen title="Video Clip Musicali — Studio Parnassus"></iframe>
     </div>
   </div>
 </section>
@@ -120,10 +118,8 @@ Sky Italia</strong> e il <strong>Comune di Stradella</strong>, e con numerosi ar
       <p>Raccontiamo chi sei e cosa fai con il linguaggio del video. Costruiamo la comunicazione del tuo brand attraverso storytelling autentico, contenuti pensati per social e web e formati pronti per ogni canale. Ci muoviamo con la stessa naturalezza tra realtà creative e mondo corporate, traducendo valori e obiettivi in immagini chiare ed efficaci — sempre con cura del messaggio e del pubblico che vogliamo raggiungere.</p>
       <div class="svc-tags"><span>Brand</span><span>Social &amp; web</span><span>Corporate</span><span>Spot</span></div>
     </div>
-    <!-- Video YouTube (facade: miniatura + click per riprodurre) -->
-    <div class="video-ph yt-facade" data-yt="j3kn5mT-rUo" role="button" tabindex="0" aria-label="Riproduci il video — Video Promo Artisti &amp; Aziende">
-      <img class="yt-thumb" src="https://i.ytimg.com/vi/j3kn5mT-rUo/maxresdefault.jpg" alt="Anteprima video — Video Promo Artisti &amp; Aziende" loading="lazy" onerror="this.onerror=null;this.src='https://i.ytimg.com/vi/j3kn5mT-rUo/hqdefault.jpg'">
-      <div class="play"></div>
+    <div class="video-ph">
+      <iframe src="https://www.youtube.com/embed/j3kn5mT-rUo" width="100%" height="315" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen title="Video Promo Artisti &amp; Aziende — Studio Parnassus"></iframe>
     </div>
   </div>
 </section>
@@ -137,10 +133,8 @@ Sky Italia</strong> e il <strong>Comune di Stradella</strong>, e con numerosi ar
       <p>Quando una storia ha bisogno di tempo e respiro, lavoriamo sulla narrazione lunga. Strutturiamo racconti complessi con sguardo registico: documentari, ritratti d'artista, progetti indipendenti e di ricerca. Curiamo scrittura, riprese e montaggio per costruire un arco emotivo solido, capace di tenere insieme realtà e visione. È il formato in cui mettiamo più dedizione artigianale, perché ogni dettaglio contribuisce al senso dell'insieme.</p>
       <div class="svc-tags"><span>CORTOMETRAGGI</span><span>DOCUMENTARI</span><span>Ritratti</span><span>Indie</span></div>
     </div>
-    <!-- Video YouTube (facade: miniatura + click per riprodurre) -->
-    <div class="video-ph yt-facade" data-yt="IatHnFBUqG0" role="button" tabindex="0" aria-label="Riproduci il video — Cortometraggi &amp; Documentari">
-      <img class="yt-thumb" src="https://i.ytimg.com/vi/IatHnFBUqG0/maxresdefault.jpg" alt="Anteprima video — Cortometraggi &amp; Documentari" loading="lazy" onerror="this.onerror=null;this.src='https://i.ytimg.com/vi/IatHnFBUqG0/hqdefault.jpg'">
-      <div class="play"></div>
+    <div class="video-ph">
+      <iframe src="https://www.youtube.com/embed/IatHnFBUqG0" width="100%" height="315" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen title="Cortometraggi &amp; Documentari — Studio Parnassus"></iframe>
     </div>
   </div>
 </section>
@@ -338,22 +332,6 @@ form.addEventListener("submit", e=>{
   ok.classList.add("show");
   form.querySelector("button").textContent = "Inviato ✓";
 });
-/* ---- 6. Video YouTube: facade → carica il player al click ---- */
-function attivaVideo(el){
-  if(el.classList.contains("playing")) return;
-  const id = el.dataset.yt;
-  el.classList.add("playing");
-  el.innerHTML =
-    '<iframe src="https://www.youtube-nocookie.com/embed/'+id+'?rel=0&autoplay=1" '+
-    'title="Video Studio Parnassus" frameborder="0" '+
-    'allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" '+
-    'allowfullscreen></iframe>';
-}
-document.querySelectorAll(".yt-facade").forEach(el=>{
-  el.addEventListener("click", ()=>attivaVideo(el));
-  el.addEventListener("keydown", e=>{ if(e.key==="Enter"||e.key===" "){ e.preventDefault(); attivaVideo(el); } });
-});
-
 /* ---- 7. Citazione hero: fade-in da sx, dopo 3s fade-out verso dx; riparte ogni volta che si torna sull'hero ---- */
 (function(){
   const quote = document.getElementById("heroQuote");
