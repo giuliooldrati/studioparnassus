@@ -1,0 +1,126 @@
+/* ============================================================
+   STUDIO PARNASSUS — Hero exploration styles
+   Shared fonts, animated background pieces, per-variant classes
+   ============================================================ */
+
+/* ---- Palette ---- */
+:root{
+  --pk-black:#0A0A0A;
+  --pk-ink:#060608;
+  --pk-yellow:#F5C518;
+  --pk-amber:#E8A317;
+  --pk-blue:#161B38;     /* night blue surface */
+  --pk-blue-2:#0E1228;
+  --pk-white:#F4F1EA;    /* warm white */
+  --pk-dim:rgba(244,241,234,.6);
+}
+
+/* ---- Film grain overlay (shared) ---- */
+.pk-grain{
+  position:absolute; inset:-50%;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  opacity:.10; mix-blend-mode:overlay; pointer-events:none;
+  animation:pk-grain-shift .6s steps(3) infinite;
+}
+@keyframes pk-grain-shift{
+  0%{transform:translate(0,0)} 33%{transform:translate(-4%,2%)}
+  66%{transform:translate(3%,-3%)} 100%{transform:translate(-2%,1%)}
+}
+
+/* ---- Warm mesh blobs (shared, tuned per variant via class) ---- */
+.pk-mesh{position:absolute; inset:0; overflow:hidden; pointer-events:none}
+.pk-blob{position:absolute; border-radius:50%; filter:blur(70px); opacity:.55}
+@keyframes pk-drift-a{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(8%,-6%) scale(1.15)}}
+@keyframes pk-drift-b{0%,100%{transform:translate(0,0) scale(1.1)}50%{transform:translate(-7%,7%) scale(.95)}}
+@keyframes pk-drift-c{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(5%,8%) scale(1.2)}}
+
+/* vignette to deepen edges */
+.pk-vignette{position:absolute; inset:0; pointer-events:none;
+  background:radial-gradient(120% 100% at 50% 40%, transparent 45%, rgba(0,0,0,.55) 100%);}
+
+/* ---- Nav (shared shell) ---- */
+.pk-nav{position:absolute; top:0; left:0; right:0; z-index:6;
+  display:flex; align-items:center; justify-content:space-between;
+  padding:26px 48px; font-family:'Hanken Grotesk',sans-serif;}
+.pk-nav-links{display:flex; gap:30px; align-items:center; list-style:none; margin:0; padding:0;
+  font-size:14px; letter-spacing:.04em; color:var(--pk-dim);}
+.pk-nav-links a{color:inherit; text-decoration:none; transition:color .2s}
+.pk-nav-links a:hover{color:var(--pk-white)}
+.pk-ext{color:var(--pk-yellow)!important}
+
+/* ---- CTA buttons (shared) ---- */
+.pk-cta-row{display:flex; gap:16px; flex-wrap:wrap; font-family:'Hanken Grotesk',sans-serif}
+.pk-btn{display:inline-flex; align-items:center; gap:9px; padding:15px 28px;
+  font-size:14.5px; font-weight:600; letter-spacing:.03em; border-radius:2px;
+  text-decoration:none; cursor:pointer; border:1px solid transparent; transition:all .2s}
+.pk-btn-solid{background:var(--pk-yellow); color:#161200}
+.pk-btn-solid:hover{background:#ffd633; transform:translateY(-2px)}
+.pk-btn-ghost{border-color:rgba(244,241,234,.35); color:var(--pk-white)}
+.pk-btn-ghost:hover{border-color:var(--pk-yellow); color:var(--pk-yellow)}
+
+/* ============================================================
+   VARIANT A — "Proiezione" : centered Bebas Neue, amber spotlight
+   ============================================================ */
+.va{position:relative; width:100%; height:100%; overflow:hidden;
+  background:radial-gradient(130% 120% at 50% 18%, #1c150a 0%, var(--pk-black) 55%, var(--pk-ink) 100%);
+  color:var(--pk-white); display:flex; flex-direction:column;}
+.va .b1{width:620px;height:620px;left:18%;top:-8%;background:radial-gradient(circle,#F5C518,transparent 65%);animation:pk-drift-a 16s ease-in-out infinite}
+.va .b2{width:520px;height:520px;right:8%;top:30%;background:radial-gradient(circle,#E8731A,transparent 65%);opacity:.4;animation:pk-drift-b 19s ease-in-out infinite}
+.va .b3{width:480px;height:480px;left:30%;bottom:-14%;background:radial-gradient(circle,#221a5e,transparent 65%);opacity:.5;animation:pk-drift-c 22s ease-in-out infinite}
+.va-center{flex:1; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; position:relative; z-index:5; padding:0 40px}
+.va-kicker{font-family:'Hanken Grotesk',sans-serif; font-size:15px; letter-spacing:.62em; color:var(--pk-yellow); margin:0 0 6px; padding-left:.62em}
+.va-word{font-family:'Bebas Neue',sans-serif; font-size:152px; line-height:.82; letter-spacing:.02em; margin:0;
+  color:var(--pk-white); text-shadow:0 0 60px rgba(245,197,24,.18)}
+.va-rule{width:120px; height:2px; background:var(--pk-yellow); margin:30px 0 22px}
+.va-sub{font-family:'Hanken Grotesk',sans-serif; font-size:18px; color:var(--pk-dim); margin:0 0 38px; letter-spacing:.02em}
+.va-foot{position:absolute; bottom:28px; left:48px; right:48px; z-index:5; display:flex; justify-content:space-between;
+  font-family:'Hanken Grotesk',sans-serif; font-size:12px; letter-spacing:.18em; color:rgba(244,241,234,.4)}
+
+/* ============================================================
+   VARIANT B — "Editoriale" : asymmetric Playfair italic, night blue
+   ============================================================ */
+.vb{position:relative; width:100%; height:100%; overflow:hidden;
+  background:linear-gradient(120deg, var(--pk-blue-2) 0%, #0a0a0a 60%, var(--pk-ink) 100%);
+  color:var(--pk-white); display:flex; flex-direction:column;}
+.vb .b1{width:560px;height:560px;left:-6%;top:8%;background:radial-gradient(circle,#26306e,transparent 65%);opacity:.6;animation:pk-drift-b 20s ease-in-out infinite}
+.vb .b2{width:600px;height:600px;right:-10%;bottom:-18%;background:radial-gradient(circle,#E8A317,transparent 62%);opacity:.42;animation:pk-drift-a 18s ease-in-out infinite}
+.vb-body{flex:1; display:grid; grid-template-columns:1.55fr .9fr; align-items:center; position:relative; z-index:5; padding:0 56px}
+.vb-kicker{font-family:'Hanken Grotesk',sans-serif; font-size:14px; letter-spacing:.5em; color:var(--pk-yellow); margin:0 0 18px}
+.vb-studio{font-family:'Hanken Grotesk',sans-serif; font-weight:800; font-size:40px; letter-spacing:.22em; line-height:1; margin:0; color:var(--pk-white)}
+.vb-name{font-family:'Playfair Display',serif; font-style:italic; font-weight:800; font-size:118px; line-height:.92; margin:6px 0 0; color:var(--pk-white)}
+.vb-name .uline{background:linear-gradient(transparent 72%, rgba(245,197,24,.85) 72% 86%, transparent 86%)}
+.vb-sub{font-family:'Hanken Grotesk',sans-serif; font-size:18px; color:var(--pk-dim); margin:30px 0 36px; max-width:440px; line-height:1.5}
+.vb-side{border-left:1px solid rgba(244,241,234,.14); padding-left:30px; align-self:center}
+.vb-side ul{list-style:none; margin:0; padding:0; font-family:'Hanken Grotesk',sans-serif}
+.vb-side li{display:flex; gap:14px; padding:13px 0; font-size:14px; letter-spacing:.04em; color:var(--pk-dim); border-bottom:1px solid rgba(244,241,234,.08)}
+.vb-side li span{color:var(--pk-yellow); font-variant-numeric:tabular-nums}
+
+/* ============================================================
+   VARIANT C — "Cinetico" : oversized Syne, kinetic marquee, dust
+   ============================================================ */
+.vc{position:relative; width:100%; height:100%; overflow:hidden;
+  background:radial-gradient(120% 130% at 70% 30%, #1a1206 0%, #0a0a0a 58%, #050507 100%);
+  color:var(--pk-white); display:flex; flex-direction:column;}
+.vc .b1{width:640px;height:640px;right:4%;top:-12%;background:radial-gradient(circle,#F5C518,transparent 64%);opacity:.5;animation:pk-drift-a 17s ease-in-out infinite}
+.vc .b2{width:540px;height:540px;left:-8%;bottom:-10%;background:radial-gradient(circle,#1d2566,transparent 64%);opacity:.6;animation:pk-drift-c 21s ease-in-out infinite}
+.vc-body{flex:1; display:flex; flex-direction:column; justify-content:center; position:relative; z-index:5; padding:0 56px}
+.vc-kicker{font-family:'Hanken Grotesk',sans-serif; font-size:14px; letter-spacing:.4em; color:var(--pk-dim); margin:0 0 14px; display:flex; align-items:center; gap:12px}
+.vc-kicker b{color:var(--pk-yellow); font-weight:600}
+.vc-dot{width:8px; height:8px; background:var(--pk-yellow); border-radius:50%; display:inline-block; animation:pk-pulse 2s ease-in-out infinite}
+@keyframes pk-pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(.7)}}
+.vc-name{font-family:'Syne',sans-serif; font-weight:800; font-size:140px; line-height:.86; letter-spacing:-.02em; margin:0; text-transform:uppercase}
+.vc-name .hi{color:var(--pk-yellow); -webkit-text-stroke:0; }
+.vc-name .out{color:transparent; -webkit-text-stroke:2px rgba(244,241,234,.85)}
+.vc-sub{font-family:'Hanken Grotesk',sans-serif; font-size:18px; color:var(--pk-dim); margin:30px 0 34px; max-width:520px; line-height:1.5}
+/* marquee */
+.vc-marquee{position:absolute; bottom:0; left:0; right:0; z-index:5; border-top:1px solid rgba(244,241,234,.12);
+  background:rgba(8,8,10,.4); overflow:hidden; padding:14px 0}
+.vc-track{display:inline-flex; gap:36px; white-space:nowrap; animation:pk-marq 22s linear infinite; font-family:'Syne',sans-serif; font-weight:700; font-size:16px; letter-spacing:.12em; text-transform:uppercase}
+.vc-track span{color:rgba(244,241,234,.5)}
+.vc-track .y{color:var(--pk-yellow)}
+@keyframes pk-marq{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+/* dust particles */
+.vc-dust{position:absolute; inset:0; z-index:4; pointer-events:none}
+.vc-dust i{position:absolute; width:3px; height:3px; background:rgba(245,197,24,.7); border-radius:50%;
+  animation:pk-float linear infinite}
+@keyframes pk-float{0%{transform:translateY(0);opacity:0}10%{opacity:.9}90%{opacity:.6}100%{transform:translateY(-120px);opacity:0}}

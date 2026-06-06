@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Studio Parnassus — Hero Variants</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Playfair+Display:ital,wght@0,600;0,800;1,800&family=Syne:wght@600;700;800&family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="hero-variants.css">
+<style>
+  html,body{margin:0;background:#1a1a1a;}
+</style>
+</head>
+<body>
+<div id="root"></div>
+
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script type="text/babel" src="../design-canvas.jsx"></script>
+
+<script type="text/babel">
+const PORTFOLIO = "https://goldrati.myportfolio.com/home";
+
+/* Shared nav shell */
+function Nav({active}){
+  const items = ["Home","Servizi","Perché il Video","Contatti"];
+  return (
+    <nav className="pk-nav">
+      <div style={{fontFamily:"'Hanken Grotesk',sans-serif",fontWeight:800,letterSpacing:".18em",fontSize:14,color:"var(--pk-white)"}}>
+        SP<span style={{color:"var(--pk-yellow)"}}>—</span>STUDIO
+      </div>
+      <ul className="pk-nav-links">
+        {items.map((t,i)=><li key={i}><a href="#" style={t===active?{color:"var(--pk-white)"}:null}>{t}</a></li>)}
+        <li><a className="pk-ext" href={PORTFOLIO} target="_blank" rel="noopener">Portfolio ↗</a></li>
+      </ul>
+    </nav>
+  );
+}
+
+/* ---------- Variant A : Proiezione ---------- */
+function HeroA(){
+  return (
+    <div className="va">
+      <div className="pk-mesh"><span className="pk-blob b1"></span><span className="pk-blob b2"></span><span className="pk-blob b3"></span></div>
+      <div className="pk-vignette"></div>
+      <div className="pk-grain"></div>
+      <Nav active="Home" />
+      <div className="va-center">
+        <p className="va-kicker">STUDIO</p>
+        <h1 className="va-word">PARNASSUS</h1>
+        <div className="va-rule"></div>
+        <p className="va-sub">Produzione video. Storytelling visivo. Dal 2020.</p>
+        <div className="pk-cta-row">
+          <a className="pk-btn pk-btn-solid" href="#">Scopri i Servizi</a>
+          <a className="pk-btn pk-btn-ghost" href={PORTFOLIO} target="_blank" rel="noopener">Vai al Portfolio →</a>
+        </div>
+      </div>
+      <div className="va-foot"><span>EST. 2020 — ITALIA</span><span>VIDEO EDITING · VIDEO MAKING</span></div>
+    </div>
+  );
+}
+
+/* ---------- Variant B : Editoriale ---------- */
+function HeroB(){
+  const idx = [["01","Video Clip Musicali"],["02","Promo & Brand"],["03","Corti & Documentari"],["04","Restauro VHS"]];
+  return (
+    <div className="vb">
+      <div className="pk-mesh"><span className="pk-blob b1"></span><span className="pk-blob b2"></span></div>
+      <div className="pk-vignette"></div>
+      <div className="pk-grain"></div>
+      <Nav active="Home" />
+      <div className="vb-body">
+        <div>
+          <p className="vb-kicker">PRODUZIONE VIDEO · ITALIA</p>
+          <p className="vb-studio">STUDIO</p>
+          <h1 className="vb-name"><span className="uline">Parnassus</span></h1>
+          <p className="vb-sub">Storytelling visivo dal 2020. Editing professionale, video making e narrazione per artisti, brand e redazioni.</p>
+          <div className="pk-cta-row">
+            <a className="pk-btn pk-btn-solid" href="#">Scopri i Servizi</a>
+            <a className="pk-btn pk-btn-ghost" href={PORTFOLIO} target="_blank" rel="noopener">Vai al Portfolio →</a>
+          </div>
+        </div>
+        <div className="vb-side">
+          <ul>{idx.map((r,i)=><li key={i}><span>{r[0]}</span>{r[1]}</li>)}</ul>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+/* ---------- Variant C : Cinetico ---------- */
+function HeroC(){
+  const dust = Array.from({length:26}).map((_,i)=>({
+    left:Math.random()*100, bottom:Math.random()*60,
+    dur:6+Math.random()*8, delay:Math.random()*8, size:1+Math.random()*3
+  }));
+  const tags = ["VIDEO EDITING","VIDEO MAKING","MUSIC VIDEOS","DOCUMENTARI","LIVE & EVENTI","RESTAURO VHS"];
+  return (
+    <div className="vc">
+      <div className="pk-mesh"><span className="pk-blob b1"></span><span className="pk-blob b2"></span></div>
+      <div className="pk-vignette"></div>
+      <div className="vc-dust">{dust.map((d,i)=><i key={i} style={{left:d.left+"%",bottom:d.bottom+"%",width:d.size,height:d.size,animationDuration:d.dur+"s",animationDelay:d.delay+"s"}}></i>)}</div>
+      <div className="pk-grain"></div>
+      <Nav active="Home" />
+      <div className="vc-body">
+        <p className="vc-kicker"><span className="vc-dot"></span>PRODUZIONE VIDEO <b>· DAL 2020</b></p>
+        <h1 className="vc-name"><span className="out">STUDIO</span><br/><span className="hi">PARNASSUS</span></h1>
+        <p className="vc-sub">Storytelling visivo, editing professionale e video making. Diamo forma alle storie — un fotogramma alla volta.</p>
+        <div className="pk-cta-row">
+          <a className="pk-btn pk-btn-solid" href="#">Scopri i Servizi</a>
+          <a className="pk-btn pk-btn-ghost" href={PORTFOLIO} target="_blank" rel="noopener">Vai al Portfolio →</a>
+        </div>
+      </div>
+      <div className="vc-marquee">
+        <div className="vc-track">
+          {[...tags,...tags].map((t,i)=><span key={i} className={i%3===1?"y":""}>{t} ✦</span>)}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+const {DesignCanvas, DCSection, DCArtboard} = window;
+const W=1380, H=780;
+
+ReactDOM.createRoot(document.getElementById("root")).render(
+  <DesignCanvas>
+    <DCSection id="heroes" title="Studio Parnassus — Hero" subtitle="Tre direzioni tipografiche · stesso background caldo (mesh + grana). Scegline una.">
+      <DCArtboard id="a" label="A · Proiezione — Bebas Neue, centrato" width={W} height={H}><HeroA/></DCArtboard>
+      <DCArtboard id="b" label="B · Editoriale — Playfair italic, asimmetrico" width={W} height={H}><HeroB/></DCArtboard>
+      <DCArtboard id="c" label="C · Cinetico — Syne, marquee + polvere" width={W} height={H}><HeroC/></DCArtboard>
+    </DCSection>
+  </DesignCanvas>
+);
+</script>
+</body>
+</html>
