@@ -269,7 +269,7 @@ CHE REALIZZIAMO</h2>
 <script>
 /* ---- 1. Marquee: riempie la traccia (doppio set per loop continuo) ---- */
 (function(){
-  const tags = ["Video Editing","Video Making","Music Videos","Documentari","Live & Eventi","Restauro VHS","Promo & Brand"];
+  const tags = ["Post Produzione","Video Making","Videoclip musicali","Documentari","Riprese live & eventi","Restauro VHS","Video promozionali"];
   const html = tags.map((t,i)=>`<span class="${i%3===1?'y':''}">${t}</span><span class="y">✦</span>`).join("");
   document.getElementById("marquee").innerHTML = html + html; // raddoppiato
 })();
